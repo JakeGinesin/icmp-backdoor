@@ -7,7 +7,7 @@ A cool ICMP listener and reverse shell. Ideally, should be used in conjunction w
 On the host machine, compile and run:
 ```
 $ make
-$ ./backdoor
+$ sudo ./backdoor
 ```
 You can also ensure:
 ```
