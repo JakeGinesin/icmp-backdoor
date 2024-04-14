@@ -101,12 +101,12 @@ Reset the terminal via the command `reset`. You might not be able to press `ente
 nc -lvp 4096
             reset
 ...
-[root@Synch /]#
+[root@user /]#
 ```
 From here, do all the basic terminal setting stuff:
 ```
-[root@Synch /]# export SHELL=bash
-[root@Synch /]# export TERM=xterm-256color
-[root@Synch /]# stty rows <num> columns <cols>
+[root@user /]# export SHELL=bash
+[root@user /]# export TERM=xterm-256color
+[root@user /]# stty rows <num> columns <cols>
 ```
 Then you should be done! Vim/nano/etc should work decent from here.
