@@ -1,5 +1,7 @@
 # ICMP Backdoor
-A cool ICMP listener and reverse shell. Ideally, should be used in conjunction with a LKM rootkit like [Diamorphine](https://github.com/m0nad/Diamorphine) to hide the process. Hypothetically, this could be turned into shellcode and injected into processes with `ptrace`, but I wouldn't recommend it since this implementation isn't really minimal.
+A cool ICMP listener and reverse shell. Ideally, should be used in conjunction with a LKM rootkit like [Diamorphine](https://github.com/m0nad/Diamorphine) or [libprocesshider](https://github.com/gianlucaborello/libprocesshider) to hide the process. Hypothetically, this could be turned into shellcode and injected into processes with `ptrace`, but I wouldn't recommend it since this implementation isn't really minimal.
+
+If you don't want to use `nping` to trigger the reverse shell, you can use the `live-off-the-land` version, which just requires `ping` and `nc`.
 
 *for educational purposes!*
 
